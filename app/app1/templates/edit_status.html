@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block edit_status %}
+<form method="post">
+    {{form}}
+<input type="submit" value="Uredi">
+{% csrf_token %}
+</form>
+{% endblock %}

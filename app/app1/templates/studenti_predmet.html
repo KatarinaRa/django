@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <style>
+        /* CSS stilovi za studente i predmete */
+        .student {
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #f0f0f0;
+        }
+
+        .status-dobio-potpis {
+            color: green;
+        }
+
+        .status-izgubio-potpis {
+            color: red;
+        }
+
+        .status-polozen {
+            color: blue;
+        }
+
+        .status-promjeni {
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
+{% block studenti_predmet %}
+    <a href="../home">Home</a> <br><br>
+    {% if request.user.uloga|slugify == 'admin' or request.user.uloga|slugify == 'profesor' %}
+        <div class="studenti-dobili-potpis">
+            <b>Studenti koji su dobili potpis:</b><br>
+            {% for s in upisi %}
+                {% if s.status == 'DOBIO_POTPIS' %}
+                    <div class="student">
+                        Student: {{ s.korisnici.username }}, Status: <span class="status-dobio-potpis">DOBIO_POTPIS</span>
+                        {% if request.user.uloga|slugify == 'profesor' %}
+                            -- <a href="../edit_status/{{ s.id }}" class="status-promjeni">Promjeni status</a><br>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+        <div class="studenti-nisu-dobili-potpis">
+            <b>Studenti koji nisu dobili potpis:</b><br>
+            {% for s in upisi %}
+                {% if s.status == 'IZGUBIO_POTPIS' %}
+                    <div class="student">
+                        Student: {{ s.korisnici.username }}, Status: <span class="status-izgubio-potpis">IZGUBIO_POTPIS</span>
+                        {% if request.user.uloga|slugify == 'profesor' %}
+                            -- <a href="../edit_status/{{ s.id }}" class="status-promjeni">Promjeni status</a><br>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+        <div class="studenti-polozili-predmet">
+            <b>Studenti koji su položili predmet:</b><br>
+            {% for s in upisi %}
+                {% if s.status == 'POLOZEN' %}
+                    <div class="student">
+                        Student: {{ s.korisnici.username }}, Status: <span class="status-polozen">POLOZEN</span>
+                        {% if request.user.uloga|slugify == 'profesor' %}
+                            -- <a href="../edit_status/{{ s.id }}" class="status-promjeni">Promjeni status</a><br>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+        <div class="studenti-upisani-na-predmet">
+            <b>Studenti upisani na predmet:</b><br>
+            {% for s in upisi %}
+                <div class="student">
+                    Student: {{ s.korisnici.username }}, Status: {{ s.status }}
+                    {% if request.user.uloga|slugify == 'profesor' %}
+                        -- <a href="../edit_status/{{ s.id }}" class="status-promjeni">Promjeni status</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+    {% else %}
+        Nemate pravo pristupa!
+    {% endif %}
+{% endblock %}

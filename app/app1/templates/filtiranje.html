@@ -1,0 +1,15 @@
+<form method="POST" action="{% url 'filtriranje' %}">
+  {% csrf_token %}
+  <input type="number" name="bodovi">
+  <button type="submit">Filtriraj</button>
+</form>
+
+{% if predmeti %}
+  <ul>
+  {% for predmet in predmeti %}
+    <li>{{ predmet.ime }}</li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>Nema predmeta koji zadovoljavaju uvjet.</p>
+{% endif %}

@@ -1,0 +1,16 @@
+<form method="POST" action="{% url 'prikazi_predmete' %}">
+    {% csrf_token %}
+    <input type="number" name="minimalni_bodovi" placeholder="Minimalni broj bodova">
+    <input type="number" name="semestar" placeholder="Unesite broj semestra">
+    <button type="submit">Filtriraj</button>
+  </form>
+  
+  {% if predmeti %}
+    <ul>
+    {% for predmet in predmeti %}
+      <li>{{ predmet.ime }}</li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>Nema predmeta koji zadovoljavaju uvjete.</p>
+  {% endif %}

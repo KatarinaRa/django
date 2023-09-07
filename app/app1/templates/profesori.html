@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% block profesori %}
+  <div style="margin-bottom: 20px;">
+    <h2 style="text-align: center;">Profesori</h2>
+    <a href="../home">Home</a>
+    <a href="../add_profesors" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; text-decoration: none;">Dodaj profesora</a>
+  </div>
+  <table style="border-collapse: collapse; width: 100%;">
+    <thead>
+      <tr style="background-color: #f5f5f5;">
+        <th style="padding: 10px; border: 1px solid #ddd;">Ime</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Prezime</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Email</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in profesori %}
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd;">{{ p.first_name }}</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">{{ p.last_name }}</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">{{ p.email }}</td>
+          <td style="padding: 10px; border: 1px solid #ddd;"><a href="../edit_profesors/{{p.id}}">Uredi</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

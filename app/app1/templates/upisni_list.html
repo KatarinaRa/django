@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+
+{% block styless %}
+    <style>
+        /* CSS stilovi za upisni list */
+        .container {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+{% endblock %}
+
+{% block upisni_list %}
+    <a href="../home">Home</a>
+    <form method="post">
+        {% csrf_token %}
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Naziv predmeta</th>
+                        <th>Upisi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in predmeti %}
+                        <tr>
+                            <td>{{ p.ime }}</td>
+                            <td>
+                                <button name="upisi" value="{{ p.id }}">Upisi</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if student.status == 'REDOVNI' %}
+            <b>Semestar 1:</b>
+            {% for u in upisi %}
+                {% if u.predmeti.sem_redovni == 1 %}
+                    <br>
+                   <strong>Ime Predmeta:</strong>{{ u.predmeti.ime }}<br>
+                    Status: {{ u.status }}
+                    <button name="ispisi" value="{{ u.id }}">Ispisi</button>
+                    {% if request.user.uloga|slugify == 'admin' and u.status == "DOBIO_POTPIS" %}
+                        <button name="polozi" value="{{ u.id }}">Polozio</button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <br>
+            <b>Semestar 2:</b>
+            {% for u in upisi %}
+                {% if u.predmeti.sem_redovni == 2 %}
+                    <br>
+                    <strong>Ime Predmeta:</strong>{{ u.predmeti.ime }}<br>
+                    Status: {{ u.status }}
+                    <button name="ispisi" value="{{ u.id }}">Ispisi</button>
+                    {% if request.user.uloga|slugify == 'admin' and u.status == "DOBIO_POTPIS" %}
+                        <button name="polozi" value="{{ u.id }}">Polozio</button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <br>
+            <b>Semestar 3:</b>
+            {% for u in upisi %}
+                {% if u.predmeti.sem_redovni == 3 %}
+                    <br>
+                    <strong>Ime Predmeta:</strong>{{ u.predmeti.ime }}<br>
+                    Status: {{ u.status }}
+                    <button name="ispisi" value="{{ u.id }}">Ispisi</button>
+                    {% if request.user.uloga|slugify == 'admin' and u.status == "DOBIO_POTPIS" %}
+                        <button name="polozi" value="{{ u.id }}">Polozio</button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <br>
+            <b>Semestar 4:</b>
+            {% for u in upisi %}
+                {% if u.predmeti.sem_redovni == 4 %}
+                    <br>
+                    <strong>Ime Predmeta:</strong>{{ u.predmeti.ime }}<br>
+                    Status: {{ u.status }}
+                    <button name="ispisi" value="{{ u.id }}">Ispisi</button>
+                    {% if request.user.uloga|slugify == 'admin' and u.status == "DOBIO_POTPIS" %}
+                        <button name="polozi" value="{{ u.id }}">Polozio</button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <br>
+            <b>Semestar 5:</b>
+            {% for u in upisi %}
+                {% if u.predmeti.sem_redovni == 5 %}
+                    <br>
+                    <strong>Ime Predmeta:</strong>{{ u.predmeti.ime }}<br>
+                    Status: {{ u.status }}
+                    <button name="ispisi" value="{{ u.id }}">Ispisi</button>
+                    {% if request.user.uloga|slugify == 'admin' and u.status == "DOBIO_POTPIS" %}
+                        <button name="polozi" value="{{ u.id }}">Polozio</button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <br>
+            <b>Semestar 6:</b>
+            {% for u in upisi %}
+                {% if u.predmeti.sem_redovni == 6 %}
+                    <br>
+                    <strong>Ime Predmeta:</strong>{{ u.predmeti.ime }}<br>
+                    Status: {{ u.status }}
+                    <button name="ispisi" value="{{ u.id }}">Ispisi</button>
+                    {% if request.user.uloga|slugify == 'admin' and u.status == "DOBIO_POTPIS" %}
+                        <button name="polozi" value="{{ u.id }}">Polozio</button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <br>
+        {% endif %}
+
+        {% if student.status == "IZVANREDNI" %}
+            {% for u in upisi %}
+                {% if u.predmeti.sem_izvanredni == 1 %}
+                    <b>Semestar 1:</b>
+                    <br>
+                    <strong>Ime Predmeta:</strong>{{ u.predmeti.ime }}<br>
+                    Status: {{ u.status }}
+                    <button name="ispisi" value="{{ u.id }}">Ispisi</button><br>
+                    {% if request.user.uloga|slugify == 'admin' and u.status == "DOBIO_POTPIS" %}
+                        <button name="polozi" value="{{ u.id }}">Polozio</button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% for u in upisi %}
+                {% if u.predmeti.sem_izvanredni == 2 %}
+                    <b>Semestar 2:</b>
+                    <br>
+                    <strong>Ime Predmeta:</strong>{{ u.predmeti.ime }}<br>
+                    Status: {{ u.status }}
+                    <button name="ispisi" value="{{ u.id }}">Ispisi</button><br>
+                    {% if request.user.uloga|slugify == 'admin' and u.status == "DOBIO_POTPIS" %}
+                        <button name="polozi" value="{{ u.id }}">Polozio</button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% for u in upisi %}
+                {% if u.predmeti.sem_izvanredni == 3 %}
+                    <b>Semestar 3:</b>
+                    <br>
+                    <strong>Ime Predmeta:</strong>{{ u.predmeti.ime }}<br>
+                    Status: {{ u.status }}
+                    <button name="ispisi" value="{{ u.id }}">Ispisi</button><br>
+                    {% if request.user.uloga|slugify == 'admin' and u.status == "DOBIO_POTPIS" %}
+                        <button name="polozi" value="{{ u.id }}">Polozio</button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% for u in upisi %}
+                {% if u.predmeti.sem_izvanredni == 4 %}
+                    <b>Semestar 4:</b>
+                    <br>
+                    <strong>Ime Predmeta:</strong> {{ u.predmeti.ime }}<br>
+                    Status: {{ u.status }}
+                    <button name="ispisi" value="{{ u.id }}">Ispisi</button><br>
+                    {% if request.user.uloga|slugify == 'admin' and u.status == "DOBIO_POTPIS" %}
+                        <button name="polozi" value="{{ u.id }}">Polozio</button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </form>
+{% endblock %}

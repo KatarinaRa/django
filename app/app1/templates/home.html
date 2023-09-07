@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block home %}
+  {% if request.user.uloga|slugify == 'admin' %}
+    <a href="../home" class="nav-link">Home</a>
+    <a href="../studenti" class="nav-link">Studenti</a>
+    <a href="../profesors" class="nav-link">Profesori</a>
+    <a href="../predmeti" class="nav-link">Predmeti</a>
+    <a href="../logout" class="nav-link">Logout</a>
+
+  {% elif request.user.uloga|slugify == 'profesor' %}
+    <a href="../home" class="nav-link">Home</a>
+    <a href="../predmeti_profesor" class="nav-link">Moji Predmeti</a>
+    <a href="../logout" class="nav-link">Logout</a>
+
+  {% elif request.user.uloga|slugify == 'student' %}
+    <a href="../home" class="nav-link">Home</a>
+    <a href="../upisni_list" class="nav-link">Upisni List</a>
+    <a href="../logout" class="nav-link">Logout</a>
+
+  {% else %}
+    <a href="../home" class="nav-link">Home</a>
+    <a href="../login" class="nav-link">Login</a>
+  {% endif %}
+{% endblock %}

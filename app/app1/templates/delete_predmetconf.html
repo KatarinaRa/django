@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block delete_predmetconf %}
+<form action="{% url 'delete_predmet' data %}" method="POST">
+    <p>Jeste li sigurni da zelite obrisati predmet?</p>
+    {% csrf_token %}
+    <input type="submit" name="yes" value="Da">
+    <input type="submit" name="no" value="Ne">
+</form>
+{% endblock %}

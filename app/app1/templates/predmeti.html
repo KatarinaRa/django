@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block predmeti %}
+<a href="../home"> Home</a>
+<div style="margin-bottom: 20px;"><br>
+    <a href="../add_predmet" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; text-decoration: none;">Dodaj predmet</a>
+  </div>
+<div class="container">
+    <table style="border-collapse: collapse; width: 100%;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid black; padding: 8px;">Ime</th>
+                <th style="border: 1px solid black; padding: 8px;">Uredi</th>
+                <th style="border: 1px solid black; padding: 8px;">Izbrisi</th>
+                <th style="border: 1px solid black; padding: 8px;">Popis studenata</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in predmeti %}
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">{{ p.ime }}</td>
+                <td style="border: 1px solid black; padding: 8px;"><a href="../edit_predmet/{{ p.id }}">Edit</a></td>
+                <td style="border: 1px solid black; padding: 8px;"><a href="../delete_predmetconf/{{ p.id }}">Delete</a></td>
+                <td style="border: 1px solid black; padding: 8px;"><a href="../studenti_predmet/{{ p.id }}">Students</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
+

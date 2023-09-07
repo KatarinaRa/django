@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block predmeti_profesor %}
+<a href="../home"> Home</a> </br>
+{% for p in predmeti %}
+<a href="../studenti_predmet/{{p.id}}"> {{p.ime}}</a></br>
+{%endfor%}
+{% endblock %}

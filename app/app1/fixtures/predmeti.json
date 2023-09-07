@@ -1,0 +1,67 @@
+[
+    {
+        "model": "app1.predmeti",
+        "pk":1,
+        "fields":{
+            "ime": "Uvod u programiranje",
+            "kod": "SRC103",
+            "program":"",
+            "bodovi": 7,
+            "sem_redovni":1,
+            "sem_izvanredni":2,
+            "nositelj_id":1
+        }
+    },
+    {
+        "model": "app1.predmeti",
+        "pk":2,
+        "fields":{
+            "ime": "Linearna algebra",
+            "kod": "SRC101",
+            "program":"",
+            "bodovi": 5,
+            "sem_redovni":1,
+            "sem_izvanredni":2,
+            "nositelj_id":2
+        }
+    },
+    {
+        "model": "app1.predmeti",
+        "pk":3,
+        "fields":{
+            "ime": "Strukture podataka i algoritmi",
+            "kod": "SRC151",
+            "program":"",
+            "bodovi": 6,
+            "sem_redovni":2,
+            "sem_izvanredni":3,
+            "nositelj_id":1
+        }
+    },
+    {
+        "model": "app1.predmeti",
+        "pk":4,
+        "fields":{
+            "ime": "Programiranje na internetu",
+            "kod": "SRC152",
+            "program":"",
+            "bodovi": 6,
+            "sem_redovni":3,
+            "sem_izvanredni":4,
+            "nositelj_id":2
+        }
+    },
+    {
+        "model": "app1.predmeti",
+        "pk":5,
+        "fields":{
+            "ime": "Informacijski sustavi",
+            "kod": "SRC155",
+            "program":"",
+            "bodovi": 4,
+            "sem_redovni":5,
+            "sem_izvanredni":6,
+            "nositelj_id":1
+        }
+    }
+]

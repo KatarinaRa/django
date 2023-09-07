@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block edit_predmet %}
+  {% if request.user.uloga|slugify == 'profesor' or request.user.uloga|slugify == 'admin' %}
+    <style>
+      form {
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 300px;
+        margin: 0 auto;
+      }
+
+      input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+
+    <form method="post">
+      {{ form }}
+      <input type="submit" value="Uredi">
+      {% csrf_token %}
+    </form>
+  {% else %}
+    Nemate pravo pristupa!
+  {% endif %}
+{% endblock %}

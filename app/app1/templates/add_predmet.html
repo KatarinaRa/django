@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block add_predmet %}
+<a href="../home"> Home</a>
+  <style>
+    .predmet-form {
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    .submit-button {
+      background-color: #143a63;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <form method="post" class="predmet-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="submit-button">Dodaj predmet</button>
+  </form>
+{% endblock %}
